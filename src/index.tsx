@@ -1,4 +1,4 @@
-import { NativeModules, Platform } from 'react-native';
+import { NativeModules, Platform, StatusBar } from 'react-native';
 
 const LINKING_ERROR =
   `The package 'react-native-api-status-bar-height' doesn't seem to be linked. Make sure: \n\n` +
@@ -17,6 +17,7 @@ const ApiStatusBarHeight = NativeModules.ApiStatusBarHeight
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return ApiStatusBarHeight.multiply(a, b);
+export function getStatusBarHeight(): Promise<number> {
+  if (Platform.OS === "android") return new Promise(resolve => resolve(StatusBar.currentHeight as number));
+  else return ApiStatusBarHeight.getStatusBarHeight();
 }
