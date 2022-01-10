@@ -1,5 +1,10 @@
 @objc(ApiStatusBarHeight)
 class ApiStatusBarHeight: NSObject {
+
+    @objc static func requiresMainQueueSetup() -> Bool {
+        return false
+    }
+    
     @objc(getStatusBarHeight:withRejecter:)
     func getStatusBarHeight(resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
         var statusBarHeight: CGFloat = 0
